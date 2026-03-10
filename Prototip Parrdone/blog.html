@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="High-end avant-garde fashion house showcase. Minimalist, bold, and editorial.">
+    <title>ParrDone</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Space+Grotesk:wght@300..700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --grey: #e0e0e0;
+            --font-serif: 'Bodoni Moda', serif;
+            --font-sans: 'Space Grotesk', sans-serif;
+            --border: 2px solid var(--black);
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none;/
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--black);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body.no-scroll {
+            overflow: hidden;
+        }
+
+        ::selection {
+            background-color: var(--black);
+            color: var(--white);
+        }
+
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .serif-font {
+            font-family: var(--font-serif);
+            font-weight: 400;
+        }
+
+        .text-huge {
+            font-family: var(--font-sans);
+            font-size: clamp(5rem, 15vw, 20rem);
+            line-height: 0.8;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .text-large-serif {
+            font-family: var(--font-serif);
+            font-size: clamp(3rem, 8vw, 10rem);
+            line-height: 0.9;
+            font-style: italic;
+            text-transform: lowercase;
+        }
+
+        .text-mono {
+            font-family: var(--font-sans);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            font-weight: 600;
+        }
+
+
+        .cursor-eyes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 4px;
+            mix-blend-mode: difference;
+            will-change: transform;
+        }
+
+        .eye {
+            width: 28px;
+            height: 28px;
+            background-color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            transition: width 0.3s ease, height 0.3s ease;
+        }
+
+        .eye-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pupil {
+            width: 10px;
+            height: 10px;
+            background-color: var(--black);
+            border-radius: 50%;
+            position: absolute;
+            transition: transform 0.05s ease-out;
+            will-change: transform;
+        }
+
+        .cursor-eyes.hovered .eye {
+            width: 50px;
+            height: 50px;
+        }
+
+        .cursor-eyes.hovered .pupil {
+            width: 16px;
+            height: 16px;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background-color: var(--white);
+            border-bottom: var(--border);
+            padding: 0 3rem;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            color: var(--black);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            position: relative;
+            padding: 1rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--black);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .contact-btn {
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--white);
+            background-color: var(--black);
+            padding: 0 2rem;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+            border-left: var(--border);
+            margin-right: -3rem;
+
+        }
+
+        .contact-btn:hover {
+            background-color: var(--white);
+            color: var(--black);
+        }
+
+
+        .marquee-strip {
+            border-bottom: var(--border);
+            white-space: nowrap;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            height: 60px;
+            background-color: var(--black);
+            color: var(--white);
+        }
+
+        .marquee-inner {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
+        }
+
+        .marquee-strip span {
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding-right: 3rem;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+
+        .hero {
+            min-height: 100vh;
+            padding-top: 80px;
+            display: flex;
+            flex-direction: column;
+            border-bottom: var(--border);
+        }
+
+        .hero-top {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        .hero-badge {
+            position: absolute;
+            top: 3rem;
+            right: 3rem;
+            width: 120px;
+            height: 120px;
+            border: var(--border);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            animation: spin 10s linear infinite;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .hero-images-container {
+            width: 100%;
+            height: 40vh;
+            border-top: var(--border);
+            display: flex;
+        }
+
+        .hero-img-col {
+            flex: 1;
+            height: 100%;
+            border-right: var(--border);
+            overflow: hidden;
+        }
+
+        .hero-img-col:last-child {
+            border-right: none;
+        }
+
+        .hero-img-col img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: filter 0.5s ease, transform 0.8s ease;
+        }
+
+        .hero-img-col:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+
+        .services-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: var(--border);
+        }
+
+        .service-block {
+            padding: 5rem 4rem;
+            border-right: var(--border);
+            border-bottom: var(--border);
+        }
+
+        .service-block:nth-child(even) {
+            border-right: none;
+        }
+
+        .service-block h3 {
+            font-size: clamp(2rem, 4vw, 4rem);
+            font-family: var(--font-sans);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            line-height: 1;
+        }
+
+        .service-block p {
+            font-size: 1.1rem;
+            max-width: 80%;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+        }
+
+        .service-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .tag {
+            border: var(--border);
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 50px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .tag:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        /* Projects List (Rows) */
+        .projects-section {
+            border-bottom: var(--border);
+        }
+
+        .section-header-large {
+            padding: 4rem;
+            border-bottom: var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .project-row {
+            display: grid;
+            grid-template-columns: 100px 1fr 300px;
+            align-items: center;
+            padding: 3rem 4rem;
+            border-bottom: 3px solid var(--black);
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            position: relative;
+            background: transparent;
+            color: var(--black);
+            overflow: hidden;
+        }
+
+        .project-row:first-of-type {
+            border-top: 3px solid var(--black);
+        }
+
+        .project-row:last-child {
+            border-bottom: 3px solid var(--black);
+        }
+
+        .project-row h2 {
+            font-size: clamp(3rem, 7vw, 7rem);
+            font-family: var(--font-sans);
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 0.9;
+            position: relative;
+            z-index: 2;
+            transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+            transform-origin: left center;
+        }
+
+        .project-row .project-tag {
+            justify-self: end;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            text-align: right;
+            border: 2px solid var(--black);
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        .project-row .project-idx {
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: transform 0.4s ease;
+        }
+
+        .project-row:hover {
+            background: var(--black);
+            color: var(--white);
+            padding-left: 5rem;
+        }
+
+        .project-row:hover h2 {
+            transform: translateX(40px) scale(1.05);
+            -webkit-text-stroke: 2px var(--white);
+            color: transparent;
+            font-style: italic;
+        }
+
+        .project-row:hover .project-tag {
+            border-color: var(--white);
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .project-row:hover .project-idx {
+            transform: translateY(-5px);
+        }
+
+
+        .project-horizontal-view {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: var(--white);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .project-horizontal-view.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .close-project-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 80px;
+            padding: 0 3rem;
+            font-family: var(--font-sans);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 1rem;
+            color: var(--white);
+            background: var(--black);
+            border: none;
+            border-left: var(--border);
+            border-bottom: var(--border);
+            z-index: 201;
+            letter-spacing: 0.1em;
+            display: flex;
+            align-items: center;
+        }
+
+        .close-project-btn:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .horizontal-scroll-track {
+            display: flex;
+            height: 100vh;
+            width: fit-content;
+            padding: 15vh 15vw;
+            gap: 10vw;
+            align-items: center;
+        }
+
+        .h-project-slide {
+            height: 70vh;
+            width: 70vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .h-project-slide img {
+            width: 100%;
+            height: 85%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            border: var(--border);
+        }
+
+        .h-project-slide .slide-caption {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 8rem 4rem 2rem 4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .footer-huge {
+            font-size: clamp(4rem, 12vw, 15rem);
+            font-family: var(--font-sans);
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 0.8;
+            border-bottom: 2px solid var(--white);
+            padding-bottom: 4rem;
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 2rem;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 1024px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-badge {
+                display: none;
+            }
+
+            nav {
+                padding: 0 1.5rem;
+            }
+
+            .contact-btn {
+                margin-right: -1.5rem;
+                padding: 0 1.5rem;
+            }
+
+            .hero-top {
+                padding: 4rem 1rem;
+            }
+
+            .hero-images-container {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .hero-img-col {
+                border-right: none;
+                border-bottom: var(--border);
+                height: 30vh;
+            }
+
+            .services-section {
+                grid-template-columns: 1fr;
+            }
+
+            .service-block {
+                border-right: none;
+                padding: 4rem 2rem;
+            }
+
+            .section-header-large {
+                padding: 3rem 1.5rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .project-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 3rem 1.5rem;
+            }
+
+            .project-row h2 {
+                font-size: 3rem;
+            }
+
+            .project-row .project-tag {
+                justify-self: start;
+            }
+
+            .project-row .project-idx {
+                display: none;
+            }
+
+            .close-project-btn {
+                right: 0;
+                padding: 0 1.5rem;
+            }
+
+            .horizontal-scroll-track {
+                padding: 15vh 10vw;
+                gap: 10vw;
+            }
+
+            .h-project-slide {
+                width: 80vw;
+            }
+
+            footer {
+                padding: 6rem 1.5rem 2rem 1.5rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .footer-links a {
+                margin: 0 1rem;
+            }
+        }
+
+
+        .arcade-section {
+            border-bottom: var(--border);
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--black);
+            color: var(--white);
+        }
+
+        .arcade-header {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 3rem;
+            font-family: var(--font-sans);
+            text-transform: uppercase;
+        }
+
+        .arcade-header h2 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        /* Bento Grid Layout */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .bento-item {
+            border: 2px solid var(--white);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            background: var(--black);
+            color: var(--white);
+            position: relative;
+        }
+
+        .bento-pong {
+            grid-column: span 2;
+            grid-row: span 1;
+        }
+
+        .bento-snake {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        .bento-ttt {
+            grid-column: span 3;
+            grid-row: span 1;
+            align-items: center;
+        }
+
+        .bento-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            font-family: var(--font-sans);
+            text-transform: uppercase;
+            width: 100%;
+        }
+
+        .bento-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .score-board {
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+        }
+
+        .arcade-canvas {
+            border: 1px solid var(--white);
+            background-color: var(--black);
+            image-rendering: pixelated;
+            width: 100%;
+            height: auto;
+            cursor: none;
+            aspect-ratio: 2 / 1;
+            display: block;
+        }
+
+        #snake-canvas {
+            aspect-ratio: 1 / 1;
+        }
+
+        .game-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-family: var(--font-sans);
+            font-weight: 700;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem;
+            border: 1px solid var(--white);
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .game-overlay:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        /* Tic Tac Toe Board */
+        .ttt-board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+            background: var(--white);
+            border: 2px solid var(--white);
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 1 / 1;
+            margin-top: 1rem;
+        }
+
+        .ttt-cell {
+            background: var(--black);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 4rem;
+            font-family: var(--font-sans);
+            cursor: pointer;
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .ttt-cell:hover {
+            background: #111;
+        }
+
+        @media (max-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bento-pong,
+            .bento-snake,
+            .bento-ttt {
+                grid-column: span 1;
+            }
+        }
+        /* StudioLinear Style Blog Cards */
+        .blog-section {
+            border-bottom: var(--border);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        @media (max-width: 1024px) {
+            .blog-grid { grid-template-columns: 1fr; gap: 3rem; }
+        }
+
+        .sl-blog-card {
+            text-decoration: none;
+            color: var(--black);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            cursor: none;
+            padding-bottom: 2rem;
+        }
+
+        .sl-card-image {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            overflow: hidden;
+            border: 2px solid var(--black);
+            background: var(--black);
+        }
+
+        .sl-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s;
+        }
+
+        .sl-blog-card:hover .sl-card-image img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        .sl-card-content {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .sl-card-meta {
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+            border: 2px solid var(--black);
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            display: inline-block;
+            align-self: flex-start;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            transition: background 0.4s, color 0.4s;
+        }
+
+        .sl-blog-card:hover .sl-card-meta {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .sl-card-content h3 {
+            font-size: clamp(2rem, 3vw, 3rem);
+            font-family: var(--font-sans);
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin: 0;
+        }
+
+        .sl-card-content p {
+            font-size: 1.1rem;
+            max-width: 90%;
+            line-height: 1.5;
+            margin: 0;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="cursor-eyes" id="cursor">
+        <div class="eye">
+            <div class="eye-inner">
+                <div class="pupil"></div>
+            </div>
+        </div>
+        <div class="eye">
+            <div class="eye-inner">
+                <div class="pupil"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <nav>
+        <div class="nav-left">
+            <a href="index.html" class="logo hover-target" style="text-decoration:none; color:inherit;">ParrDone</a>
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html#work" class="hover-target">Proiecte</a>
+            <a href="index.html#studio" class="hover-target">Galerie</a>
+            <a href="blog.html" class="hover-target" style="border-bottom: 2px solid var(--black)">Blog</a>
+        </div>
+
+        <div class="nav-right">
+            <a href="#contact" class="contact-btn hover-target">Follow</a>
+        </div>
+    </nav>
+
+
+    <!-- Blog Section -->
+    <section class="blog-section" id="blog" style="padding-top: 15vh; min-height: 80vh;">
+        <div class="section-header-large reveal">
+            <h2 class="text-huge" style="font-size: clamp(3rem, 6vw, 8rem);">THE PARRDONE<br><span class="text-large-serif">Guide to Fashion</span></h2>
+            <div class="text-mono">LATEST // EDITORIALS</div>
+        </div>
+
+        <div class="blog-grid" style="padding: 0 4rem 5rem 4rem;">
+            <a href="#" class="sl-blog-card hover-target reveal">
+                <div class="sl-card-image">
+                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&q=80&w=1200" alt="Blog 1">
+                </div>
+                <div class="sl-card-content">
+                    <div class="sl-card-meta text-mono">MAR 2026 // TRENDS</div>
+                    <h3>The Brutalist Revival</h3>
+                    <p>Cultivating visual narratives through aggressive tailoring and structural design. We analyze the return of extreme silhouettes and monochromatic dominance.</p>
+                </div>
+            </a>
+            
+            <a href="#" class="sl-blog-card hover-target reveal" style="transition-delay: 0.1s">
+                <div class="sl-card-image">
+                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&q=80&w=1200" alt="Blog 2">
+                </div>
+                <div class="sl-card-content">
+                    <div class="sl-card-meta text-mono">FEB 2026 // ARCHIVE</div>
+                    <h3>Monochrome Manifesto</h3>
+                    <p>Building foundational brand elements for luxury labels. Why pure black and white will always dominate the avant-garde market, rejecting fast-fashion.</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-huge hover-target">LET'S<br>TALK</div>
+        <div class="footer-bottom">
+            <div>&copy; 2026 AVANT HOUSE. ALL RIGHTS RESERVED.</div>
+            <div class="footer-links">
+                <a href="#" class="hover-target">INSTAGRAM</a>
+                <a href="#" class="hover-target">DRIBBBLE</a>
+                <a href="#" class="hover-target">CONTACT</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Googly Eye Cursor
+        const cursor = document.getElementById('cursor');
+        const pupils = document.querySelectorAll('.pupil');
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let cursorX = mouseX;
+        let cursorY = mouseY;
+
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        if (isTouchDevice) {
+            cursor.style.display = 'none';
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            pupils.forEach(pupil => {
+                const rect = pupil.parentElement.getBoundingClientRect();
+                const eyeCenterX = rect.left + rect.width / 2;
+                const eyeCenterY = rect.top + rect.height / 2;
+
+                const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
+
+                const eyeRadius = rect.width / 2;
+                const pupilRadius = pupil.offsetWidth / 2;
+                const maxDistance = eyeRadius - pupilRadius - 2;
+
+                const rawDistance = Math.hypot(e.clientX - eyeCenterX, e.clientY - eyeCenterY) * 0.15;
+                const distance = Math.min(maxDistance, rawDistance);
+
+                const pupilX = Math.cos(angle) * distance;
+                const pupilY = Math.sin(angle) * distance;
+
+                // Add a slightly subtle snap-back ease like real eyes
+                pupil.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
+            });
+        });
+
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.15;
+            cursorY += (mouseY - cursorY) * 0.15;
+            cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%)`;
+            requestAnimationFrame(animateCursor);
+        }
+        if (!isTouchDevice) { animateCursor(); }
+
+        const hoverTargets = document.querySelectorAll('.hover-target');
+        hoverTargets.forEach(target => {
+            target.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+            target.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+        });
+
+        // Horizontal Project Click View
+        const projectView = document.getElementById('project-view');
+        const scrollTrack = document.getElementById('scroll-track');
+        const closeProject = document.getElementById('close-project');
+        let isProjectViewActive = false;
+        let currentScroll = 0;
+        let targetScroll = 0;
+
+        document.querySelectorAll('.project-trigger').forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                isProjectViewActive = true;
+                projectView.classList.add('active');
+                document.body.classList.add('no-scroll');
+                targetScroll = 0;
+                currentScroll = 0;
+                scrollTrack.style.transform = `translate3d(0px, 0, 0)`;
+
+                const title = trigger.getAttribute('data-project');
+                const img1 = trigger.querySelector('.p-img-1').src;
+                const img2 = trigger.querySelector('.p-img-2').src;
+
+                scrollTrack.innerHTML = `
+                    <div class="h-project-slide">
+                        <img src="${img1}" alt="Slide 1">
+                        <div class="slide-caption">
+                            <span>${title} / 01</span>
+                            <span>Editorial</span>
+                        </div>
+                    </div>
+                    <div class="h-project-slide">
+                        <img src="${img2}" alt="Slide 2">
+                        <div class="slide-caption">
+                            <span>${title} / 02</span>
+                            <span>Detail</span>
+                        </div>
+                    </div>
+                `;
+            });
+        });
+
+        closeProject.addEventListener('click', () => {
+            isProjectViewActive = false;
+            projectView.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        });
+
+        window.addEventListener('wheel', (e) => {
+            if (!isProjectViewActive) return;
+            e.preventDefault();
+            targetScroll += e.deltaY * 1.5;
+            const maxScroll = scrollTrack.scrollWidth - window.innerWidth;
+            targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
+        }, { passive: false });
+
+        function animateProjectScroll() {
+            if (isProjectViewActive) {
+                currentScroll += (targetScroll - currentScroll) * 0.1;
+                scrollTrack.style.transform = `translate3d(-${currentScroll}px, 0, 0)`;
+            }
+            requestAnimationFrame(animateProjectScroll);
+        }
+        animateProjectScroll();
+
+        // Reveals
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Brutalist Pong Game
+        const canvas = document.getElementById('pong-canvas');
+        const ctx = canvas.getContext('2d');
+        const playerScoreEl = document.getElementById('player-score');
+        const aiScoreEl = document.getElementById('ai-score');
+
+        let playerScore = 0;
+        let aiScore = 0;
+
+        const net = {
+            x: canvas.width / 2 - 1,
+            y: 0,
+            width: 2,
+            height: 10,
+            color: 'white'
+        };
+
+        const player = {
+            x: 10,
+            y: canvas.height / 2 - 40,
+            width: 10,
+            height: 80,
+            color: 'white',
+            dy: 0
+        };
+
+        const ai = {
+            x: canvas.width - 20,
+            y: canvas.height / 2 - 40,
+            width: 10,
+            height: 80,
+            color: 'white',
+            dy: 0,
+            speed: 3
+        };
+
+        const bgBall = {
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+            radius: 8,
+            speed: 5,
+            velX: 5,
+            velY: 5,
+            color: 'white'
+        };
+
+        function drawRect(x, y, w, h, color) {
+            ctx.fillStyle = color;
+            ctx.fillRect(x, y, w, h);
+        }
+
+        function drawCircle(x, y, r, color) {
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.arc(x, y, r, 0, Math.PI * 2, false);
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        function drawNet() {
+            for (let i = 0; i <= canvas.height; i += 25) {
+                drawRect(net.x, net.y + i, net.width, net.height, net.color);
+            }
+        }
+
+        // Track mouse purely on the canvas using our existing mouseX/Y but relative coords
+        canvas.addEventListener('mousemove', (e) => {
+            if (!pPlaying) return;
+            const rect = canvas.getBoundingClientRect();
+            // Map the mouse y to canvas internal resolution
+            const scaleY = canvas.height / rect.height;
+            player.y = (e.clientY - rect.top) * scaleY - player.height / 2;
+        });
+
+        // Mobile touch support for Pong
+        canvas.addEventListener('touchmove', (e) => {
+            if (!pPlaying) return;
+            e.preventDefault(); // Prevent scrolling while playing
+            const rect = canvas.getBoundingClientRect();
+            const scaleY = canvas.height / rect.height;
+            const touchObj = e.changedTouches[0];
+            player.y = (touchObj.clientY - rect.top) * scaleY - player.height / 2;
+        }, { passive: false });
+
+        function collision(b, p) {
+            b.top = b.y - b.radius;
+            b.bottom = b.y + b.radius;
+            b.left = b.x - b.radius;
+            b.right = b.x + b.radius;
+
+            p.top = p.y;
+            p.bottom = p.y + p.height;
+            p.left = p.x;
+            p.right = p.x + p.width;
+
+            return b.right > p.left && b.bottom > p.top && b.left < p.right && b.top < p.bottom;
+        }
+
+        function resetBall() {
+            bgBall.x = canvas.width / 2;
+            bgBall.y = canvas.height / 2;
+            bgBall.speed = 5;
+            bgBall.velX = -bgBall.velX;
+        }
+
+        let pPlaying = false;
+        function updatePong() {
+            if (!pPlaying) return;
+            bgBall.x += bgBall.velX;
+            bgBall.y += bgBall.velY;
+
+            // Simple AI
+            const aiCenter = ai.y + ai.height / 2;
+            if (aiCenter < bgBall.y - 15) {
+                ai.y += ai.speed;
+            } else if (aiCenter > bgBall.y + 15) {
+                ai.y -= ai.speed;
+            }
+
+            // Boundary collision
+            if (bgBall.y + bgBall.radius > canvas.height || bgBall.y - bgBall.radius < 0) {
+                bgBall.velY = -bgBall.velY;
+            }
+
+            // Track Player or AI
+            let currentPaddle = (bgBall.x < canvas.width / 2) ? player : ai;
+
+            if (collision(bgBall, currentPaddle)) {
+                let collidePoint = (bgBall.y - (currentPaddle.y + currentPaddle.height / 2));
+                collidePoint = collidePoint / (currentPaddle.height / 2);
+                let angleRad = (Math.PI / 4) * collidePoint;
+
+                let direction = (bgBall.x < canvas.width / 2) ? 1 : -1;
+
+                bgBall.velX = direction * bgBall.speed * Math.cos(angleRad);
+                bgBall.velY = bgBall.speed * Math.sin(angleRad);
+
+                // Speed up slightly on hit
+                bgBall.speed += 0.5;
+            }
+
+            // Scoring
+            if (bgBall.x - bgBall.radius < 0) {
+                aiScore++;
+                aiScoreEl.innerText = aiScore;
+                resetBall();
+            } else if (bgBall.x + bgBall.radius > canvas.width) {
+                playerScore++;
+                playerScoreEl.innerText = playerScore;
+                resetBall();
+            }
+        }
+
+        function renderPong() {
+            drawRect(0, 0, canvas.width, canvas.height, 'black');
+            drawNet();
+            drawRect(player.x, player.y, player.width, player.height, player.color);
+            drawRect(ai.x, ai.y, ai.width, ai.height, ai.color);
+            drawCircle(bgBall.x, bgBall.y, bgBall.radius, bgBall.color);
+        }
+
+        function gameLoop() {
+            updatePong();
+            renderPong();
+            requestAnimationFrame(gameLoop);
+        }
+
+        // Only start loop after rendering is complete to avoid initial visual stutter
+        requestAnimationFrame(gameLoop);
+
+        // --- GAME CONTROLLER ---
+        function stopAllGames() {
+            pPlaying = false;
+            const pStart = document.getElementById('pong-start');
+            if (pStart) pStart.style.display = 'block';
+
+            sPlaying = false;
+            const sStart = document.getElementById('snake-start');
+            if (sStart) sStart.style.display = 'block';
+
+            tttPlaying = false;
+            const tStart = document.getElementById('ttt-start');
+            if (tStart) tStart.style.display = 'block';
+        }
+
+        function startGame(gameName) {
+            stopAllGames();
+            if (gameName === 'pong') {
+                pPlaying = true;
+                const pStart = document.getElementById('pong-start');
+                if (pStart) pStart.style.display = 'none';
+                resetBall();
+            } else if (gameName === 'snake') {
+                sPlaying = true;
+                const sStart = document.getElementById('snake-start');
+                if (sStart) sStart.style.display = 'none';
+                snakeObj.x = 150; snakeObj.y = 150; snakeObj.cells = []; snakeObj.maxCells = 4;
+                snakeObj.dx = grid; snakeObj.dy = 0; sScoreEl.innerText = '0';
+                requestAnimationFrame(loopSnake);
+            } else if (gameName === 'ttt') {
+                tttPlaying = true;
+                const tStart = document.getElementById('ttt-start');
+                if (tStart) tStart.style.display = 'none';
+                resetTTT();
+            }
+        }
+
+        document.getElementById('pong-start').addEventListener('click', () => startGame('pong'));
+        document.getElementById('snake-start').addEventListener('click', () => startGame('snake'));
+
+        // --- SNAKE GAME LOGIC ---
+        const sCanvas = document.getElementById('snake-canvas');
+        const sCtx = sCanvas.getContext('2d');
+        const sScoreEl = document.getElementById('snake-score');
+        const grid = 15;
+        let count = 0;
+        let snakeObj = { x: 150, y: 150, dx: grid, dy: 0, cells: [], maxCells: 4 };
+        let apple = { x: 60, y: 60 };
+        let sPlaying = false;
+
+        function getRandomInt(min, max) { return Math.floor(Math.random() * (max - min)) + min; }
+
+        function loopSnake() {
+            if (!sPlaying) return;
+            requestAnimationFrame(loopSnake);
+            if (++count < 6) return; // control speed (higher is slower)
+            count = 0;
+
+            sCtx.clearRect(0, 0, sCanvas.width, sCanvas.height);
+
+            snakeObj.x += snakeObj.dx;
+            snakeObj.y += snakeObj.dy;
+
+            // Wall wrap-around
+            if (snakeObj.x < 0) snakeObj.x = sCanvas.width - grid;
+            else if (snakeObj.x >= sCanvas.width) snakeObj.x = 0;
+            if (snakeObj.y < 0) snakeObj.y = sCanvas.height - grid;
+            else if (snakeObj.y >= sCanvas.height) snakeObj.y = 0;
+
+            snakeObj.cells.unshift({ x: snakeObj.x, y: snakeObj.y });
+            if (snakeObj.cells.length > snakeObj.maxCells) snakeObj.cells.pop();
+
+            // Draw apple
+            sCtx.fillStyle = 'white';
+            sCtx.fillRect(apple.x, apple.y, grid - 1, grid - 1);
+
+            // Draw snake body
+            sCtx.fillStyle = '#e0e0e0';
+            snakeObj.cells.forEach(function (cell, index) {
+                sCtx.fillRect(cell.x, cell.y, grid - 1, grid - 1);
+
+                // Eat apple
+                if (cell.x === apple.x && cell.y === apple.y) {
+                    snakeObj.maxCells++;
+                    sScoreEl.innerText = snakeObj.maxCells - 4;
+                    apple.x = getRandomInt(0, 20) * grid;
+                    apple.y = getRandomInt(0, 20) * grid;
+                }
+
+                // Death (touching self)
+                for (let i = index + 1; i < snakeObj.cells.length; i++) {
+                    if (cell.x === snakeObj.cells[i].x && cell.y === snakeObj.cells[i].y) {
+                        snakeObj.x = 150; snakeObj.y = 150; snakeObj.cells = []; snakeObj.maxCells = 4;
+                        snakeObj.dx = grid; snakeObj.dy = 0; sScoreEl.innerText = '0';
+                        const sStart = document.getElementById('snake-start');
+                        if (sStart) sStart.style.display = 'block';
+                        sPlaying = false;
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('keydown', function (e) {
+            // Prevent scrolling if snake is actively playing
+            if (sPlaying && [37, 38, 39, 40].includes(e.which)) e.preventDefault();
+
+            if (e.which === 37 && snakeObj.dx === 0) { snakeObj.dx = -grid; snakeObj.dy = 0; }
+            else if (e.which === 38 && snakeObj.dy === 0) { snakeObj.dy = -grid; snakeObj.dx = 0; }
+            else if (e.which === 39 && snakeObj.dx === 0) { snakeObj.dx = grid; snakeObj.dy = 0; }
+            else if (e.which === 40 && snakeObj.dy === 0) { snakeObj.dy = grid; snakeObj.dx = 0; }
+        });
+
+        // Mobile touch support for Snake (Swipe gestures)
+        let touchStartX = 0;
+        let touchStartY = 0;
+
+        sCanvas.addEventListener('touchstart', function (e) {
+            if (!sPlaying) return;
+            // Removed e.preventDefault() here to allow clicks on overlay
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: false });
+
+        sCanvas.addEventListener('touchmove', function (e) {
+            if (sPlaying) e.preventDefault(); // Prevent scrolling while swiping
+        }, { passive: false });
+
+        sCanvas.addEventListener('touchend', function (e) {
+            if (!sPlaying) return;
+            e.preventDefault();
+            let touchEndX = e.changedTouches[0].screenX;
+            let touchEndY = e.changedTouches[0].screenY;
+
+            let dx = touchEndX - touchStartX;
+            let dy = touchEndY - touchStartY;
+
+            // Only trigger if it's a significant swipe
+            if (Math.abs(dx) > 30 || Math.abs(dy) > 30) {
+                if (Math.abs(dx) > Math.abs(dy)) {
+                    // Horizontal swipe
+                    if (dx > 0 && snakeObj.dx === 0) { snakeObj.dx = grid; snakeObj.dy = 0; } // Right
+                    else if (dx < 0 && snakeObj.dx === 0) { snakeObj.dx = -grid; snakeObj.dy = 0; } // Left
+                } else {
+                    // Vertical swipe
+                    if (dy > 0 && snakeObj.dy === 0) { snakeObj.dy = grid; snakeObj.dx = 0; } // Down
+                    else if (dy < 0 && snakeObj.dy === 0) { snakeObj.dy = -grid; snakeObj.dx = 0; } // Up
+                }
+            }
+        }, { passive: false });
+
+        // --- TIC TAC TOE LOGIC ---
+        const tttCells = document.querySelectorAll('.ttt-cell');
+        const tttStatus = document.getElementById('ttt-status');
+        let tttBoard = Array(9).fill(null);
+        let tttActive = true;
+        let tttPlaying = false;
+
+        const tCard = document.getElementById('ttt-start');
+        if (tCard) tCard.addEventListener('click', () => startGame('ttt'));
+
+        const winLines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+
+        function checkWin(board, player) {
+            return winLines.some(line => line.every(idx => board[idx] === player));
+        }
+
+        function getAvailable(board) {
+            let spots = [];
+            for (let i = 0; i < 9; i++) if (!board[i]) spots.push(i);
+            return spots;
+        }
+
+        // Hard AI Minimax Algorithm
+        function minimax(newBoard, player) {
+            let availSpots = getAvailable(newBoard);
+
+            // Check terminal states
+            if (checkWin(newBoard, 'X')) return { score: -10 };
+            else if (checkWin(newBoard, 'O')) return { score: 10 };
+            else if (availSpots.length === 0) return { score: 0 };
+
+            let moves = [];
+            for (let i = 0; i < availSpots.length; i++) {
+                let move = {};
+                move.index = availSpots[i];
+                newBoard[availSpots[i]] = player;
+
+                if (player === 'O') move.score = minimax(newBoard, 'X').score;
+                else move.score = minimax(newBoard, 'O').score;
+
+                newBoard[availSpots[i]] = null; // reset
+                moves.push(move);
+            }
+
+            let bestMove;
+            if (player === 'O') {
+                let bestScore = -10000;
+                for (let i = 0; i < moves.length; i++) { if (moves[i].score > bestScore) { bestScore = moves[i].score; bestMove = i; } }
+            } else {
+                let bestScore = 10000;
+                for (let i = 0; i < moves.length; i++) { if (moves[i].score < bestScore) { bestScore = moves[i].score; bestMove = i; } }
+            }
+            return moves[bestMove];
+        }
+
+        function makeAIMove() {
+            if (!tttActive) return;
+            // First move randomly to keep it fresh, otherwise use minimax
+            const avail = getAvailable(tttBoard);
+            let aiIdx;
+            if (avail.length === 8) { aiIdx = avail[Math.floor(Math.random() * avail.length)]; }
+            else {
+                const bestMove = minimax(tttBoard, 'O');
+                aiIdx = bestMove.index;
+            }
+
+            if (aiIdx !== undefined) {
+                tttBoard[aiIdx] = 'O';
+                tttCells[aiIdx].innerText = 'O';
+
+                if (checkWin(tttBoard, 'O')) { tttStatus.innerText = 'AI WINS!'; tttActive = false; setTimeout(resetTTT, 2500); }
+                else if (getAvailable(tttBoard).length === 0) { tttStatus.innerText = 'DRAW!'; tttActive = false; setTimeout(resetTTT, 2500); }
+                else tttStatus.innerText = 'YOUR TURN (X)';
+            }
+        }
+
+        function resetTTT() {
+            tttBoard = Array(9).fill(null);
+            tttCells.forEach(cell => cell.innerText = '');
+            tttActive = true;
+            tttStatus.innerText = 'YOUR TURN (X)';
+        }
+
+        tttCells.forEach(cell => {
+            cell.addEventListener('click', (e) => {
+                if (!tttPlaying || !tttActive) return;
+                const idx = e.target.getAttribute('data-idx');
+                if (!tttBoard[idx]) {
+                    tttBoard[idx] = 'X';
+                    e.target.innerText = 'X';
+
+                    if (checkWin(tttBoard, 'X')) { tttStatus.innerText = 'YOU WIN!'; tttActive = false; setTimeout(resetTTT, 2500); }
+                    else if (getAvailable(tttBoard).length === 0) { tttStatus.innerText = 'DRAW!'; tttActive = false; setTimeout(resetTTT, 2500); }
+                    else { tttStatus.innerText = 'AI THINKING...'; setTimeout(makeAIMove, 400); }
+                }
+            });
+        });
+
+    </script>
+</body>
+
+</html>
